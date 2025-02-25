@@ -1,0 +1,4 @@
+name: LambdaUpdate
+version: '${project.version}'
+main: com.lambda_professional.lambdaupdate.LambdaUpdate
+api-version: '1.21'

@@ -1,0 +1,40 @@
+# ==============================================
+#              Lambda Professional
+#         https://lambda-professional.com/
+#
+#                 LambdaUpdate
+#                  config.yml
+# ==============================================
+
+# Time interval in ticks for checking if there are updates available.
+# Examples:
+# - 1 minute  = 1200 ticks
+# - 5 minutes = 6000 ticks
+# - 15 minutes (recommended) = 18000 ticks
+# - 30 minutes = 36000 ticks
+# - 60 minutes = 72000 ticks
+loop-interval-ticks: 18000
+
+# The number of players online at which the server will proceed with the update.
+# If the number of online players is less than or equal to this value, the update will start.
+# Recommended value: 0
+players-online: 0
+
+# Custom message displayed to players when they are kicked or when they attempt to join
+# the server during an ongoing update.
+kick-message: "The server is being updated."
+
+# The name of the folder inside the server plugins directory where new plugin versions
+# for updates are stored.
+updates-dir-name: "updates"
+
+# Enable automatic backups for outdated plugins
+# Recommended value: true
+create-backups: true
+
+# The name of the folder inside the server plugins directory where outdated, replaced
+# plugin versions are stored.
+backups-dir-name: "backups"
+
+# Config version. Don't modify manually!
+config-ver: 1
