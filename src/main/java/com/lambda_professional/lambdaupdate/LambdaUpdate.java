@@ -53,7 +53,9 @@ public final class LambdaUpdate extends JavaPlugin {
 
         LoopTask.start();
 
-        LambdaUpdate.getPlugin().getLogger().info("Hello! Everything is good! Checking for updates every " + Config.getString("loop-interval-ticks") + " ticks.");
+        double ticksToSecs = Double.parseDouble(Config.getString("loop-interval-ticks"))/20D;
+
+        LambdaUpdate.getPlugin().getLogger().info("Hello! Checking for updates every " + Config.getString("loop-interval-ticks") + " ticks (+- " + ticksToSecs + " sec).");
 
     }
 
