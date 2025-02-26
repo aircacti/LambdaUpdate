@@ -2,3 +2,12 @@ name: LambdaUpdate
 version: '${project.version}'
 main: com.lambda_professional.lambdaupdate.LambdaUpdate
 api-version: '1.21'
+author: Lambda Professional
+website: https://lambda-professional.com/
+load: POSTWORLD
+
+
+commands:
+  lambdaupdate:
+    description: LambdaUpdate management
+    aliases: [update, lupdate, lu]

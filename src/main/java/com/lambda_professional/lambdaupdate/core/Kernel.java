@@ -1,10 +1,13 @@
 package com.lambda_professional.lambdaupdate.core;
 
 import com.lambda_professional.lambdaupdate.LambdaUpdate;
+import com.lambda_professional.lambdaupdate.commands.LambdaUpdateCommand;
 import com.lambda_professional.lambdaupdate.events.AsyncPlayerPreLoginListener;
 import com.lambda_professional.lambdaupdate.utils.Logging;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.plugin.PluginManager;
 
 import java.io.File;
@@ -13,6 +16,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Kernel {
+
+    public static final String PERMISSION = "lambdaupdate";
+
 
     private static boolean duringUpdate = false;
 
@@ -23,6 +29,10 @@ public class Kernel {
     public static void registerEvents() {
         PluginManager pluginManager = Bukkit.getServer().getPluginManager();
         pluginManager.registerEvents(new AsyncPlayerPreLoginListener(), LambdaUpdate.getPlugin());
+    }
+
+    public static void registerCommands() {
+        LambdaUpdate.getPlugin().getCommand("lambdaupdate").setExecutor(new LambdaUpdateCommand());
     }
 
     public static void createPluginFolderIfNotExists() throws IOException {
@@ -110,9 +120,11 @@ public class Kernel {
         duringUpdate = false;
     }
 
-
-
-
+    public static void kickPlayers() {
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            player.kick(Component.text(Config.getString("kick-message")), PlayerKickEvent.Cause.PLUGIN);
+        }
+    }
 
 
 }

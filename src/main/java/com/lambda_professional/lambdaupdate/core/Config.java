@@ -4,8 +4,12 @@ import com.lambda_professional.lambdaupdate.LambdaUpdate;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.Set;
 
 public class Config {
+
+    public static final int REQUIRED_CONFIG_VERSION = 2;
 
     private static FileConfiguration config;
 
@@ -13,12 +17,17 @@ public class Config {
         File configFile = new File(LambdaUpdate.getPlugin().getDataFolder(), "config.yml");
 
         if (!configFile.exists()) {
-            LambdaUpdate.getPlugin().saveResource("config.yml", true);
+            LambdaUpdate.getPlugin().saveResource("config.yml", false);
         }
     }
 
     public static void loadConfig() throws Exception {
         config = LambdaUpdate.getPlugin().getConfig();
+    }
+
+    public static void reloadConfig() throws Exception {
+        LambdaUpdate.getPlugin().reloadConfig();
+        loadConfig();
     }
 
     public static String getString(String path) {
@@ -42,5 +51,17 @@ public class Config {
         return config.getBoolean(path);
     }
 
+
+    public static HashMap<String, String> getAllSettings() {
+        HashMap<String, String> settingsMap = new HashMap<>();
+        if (config != null) {
+            Set<String> keys = config.getKeys(false); // false oznacza, że nie wchodzimy w podklucze
+            for (String key : keys) {
+                String value = String.valueOf(config.get(key));
+                settingsMap.put(key, value);
+            }
+        }
+        return settingsMap;
+    }
 
 }

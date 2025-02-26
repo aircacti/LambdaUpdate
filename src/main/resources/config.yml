@@ -36,5 +36,13 @@ create-backups: true
 # plugin versions are stored.
 backups-dir-name: "backups"
 
+# Message displayed to players when they attempt to use /lambdaupdate command
+# but lack the necessary permissions.
+no-permission-message: "&cYou don't have permissions"
+
+# Experimental setting: Enable sending log messages to players with permissions
+# Recommended value: false
+send-logs-to-players: false
+
 # Config version. Don't modify manually!
-config-ver: 1
+config-ver: 2
